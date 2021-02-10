@@ -1,6 +1,6 @@
 'use strict';
 
-const r_to_d = {
+const R_TO_D = {
 	M: 1000, CM: 900, D: 500, CD: 400,
 	C: 100, XC: 90, L: 50,
 	XL: 40, X: 10, IX: 9,
@@ -10,10 +10,10 @@ const r_to_d = {
 const decimalToRoman = function (num) {
 	num = parseInt(num);
 	let res = '';
-	for (let i in r_to_d) {
-		while (num >= r_to_d[i]) {
+	for (let i in R_TO_D) {
+		while (num >= R_TO_D[i]) {
 			res += i;
-			num -= r_to_d[i];
+			num -= R_TO_D[i];
 		}
 	}
 	return res;
@@ -24,7 +24,7 @@ const romanToDecimal = function (num) {
 	let res = 0;
 	let prev = 1001;
 	for (let i = 0; i < num.length; ++i) {
-		let current = r_to_d[num[i]];
+		let current = R_TO_D[num[i]];
 		res += current;
 		if (current > prev) {
 			res -= prev * 2;
