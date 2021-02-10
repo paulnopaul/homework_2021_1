@@ -8,7 +8,7 @@ const ROMAN_TO_DECIMAL = {
 };
 
 const decimalToRoman = function (num) {
-	num = parseInt(num);
+  num = parseInt(num);
 	let res = '';
 	for (let i in ROMAN_TO_DECIMAL) {
 		while (num >= ROMAN_TO_DECIMAL[i]) {
