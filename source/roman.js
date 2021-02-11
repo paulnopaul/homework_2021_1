@@ -9,6 +9,11 @@ const ROMAN_TO_DECIMAL = {
 
 const ROMAN_LETTERS = 'IVXMLCDM'
 
+
+/**
+ * Переводит число из десятичого формата в римский
+ * @param {string} decimalNumber - десятичное число 
+ */
 const decimalToRoman = (decimalNumber) => {
   let romanNumber = '';
   let currentDecimalNumber = parseInt(decimalNumber);
@@ -21,6 +26,10 @@ const decimalToRoman = (decimalNumber) => {
   return romanNumber;
 };
 
+/**
+ * Переводит число из римского формата в десятичный
+ * @param {string} romanNumber - строка с римским числом
+ */
 const romanToDecimal = (romanNumber) => {
   let currentRomanNumber = romanNumber.toUpperCase();
   let decimalNumber = 0;
@@ -36,16 +45,29 @@ const romanToDecimal = (romanNumber) => {
   return decimalNumber;
 };
 
-const validateRoman = (romanNumber) {
+/**
+ * Проверка формата римского числа
+ * @param {string} romanNumber - строка с римским числом
+ */
+const validateRoman = (romanNumber) => {
+  for (let char of romanNumber.toUpperCase()) {
+    // console.log(char);
+    if (!(ROMAN_LETTERS.includes(char))) {
+      return false;
+    }
+  }
   return true;
 }
 
+
+/**
+ * Перевод числа из римского формата в десятичный и обратно
+ * @param {string} num - строка с числом
+ */
 const roman = (num) => {
-  if (validateRoman(num)) {
-    return romanToDecimal(num);
-  } else if (!isNaN(num)) {
-    return decimalToRoman(num)
-  } else {
-    return null;
-  }
+  return (!isNaN(num) ? (decimalToRoman(num)) : (validateRoman(num) ? romanToDecimal(num) : null));
 };
+
+console.log(roman("xvii"));
+console.log(roman("19"));
+console.log(roman("iiff"));
