@@ -7,37 +7,38 @@ const ROMAN_TO_DECIMAL = {
 	V: 5, IV: 4, I: 1
 };
 
-const decimalToRoman = function (num) {
-  num = parseInt(num);
-	let res = '';
+const decimalToRoman = (decimalNumber) => {
+	let romanNumber = '';
+  let currentDecimalNumber = parseInt(decimalNumber);
 	for (let i in ROMAN_TO_DECIMAL) {
-		while (num >= ROMAN_TO_DECIMAL[i]) {
-			res += i;
-			num -= ROMAN_TO_DECIMAL[i];
+		while (currentDecimalNumber >= ROMAN_TO_DECIMAL[i]) {
+			romanNumber += i;
+			currentDecimalNumber -= ROMAN_TO_DECIMAL[i];
 		}
 	}
-	return res;
-}
+	return romanNumber;
+};
 
-const romanToDecimal = function (num) {
-	num = num.toUpperCase();
-	let res = 0;
-	let prev = 1001;
-	for (let i = 0; i < num.length; ++i) {
-		let current = ROMAN_TO_DECIMAL[num[i]];
-		res += current;
-		if (current > prev) {
-			res -= prev * 2;
+const romanToDecimal = (romanNumber) => {
+	let romanNumber = romanNumber.toUpperCase();
+	let decimalNumber = 0;
+  // let prevChar = Math.max(...Object.values(ROMAN_TO_DECIMAL));
+  let prevChar = 1001;
+	for (let i = 0; i < romanNumber.length; ++i) {
+		const currentChar = ROMAN_TO_DECIMAL[romanNumber[i]];
+		decimalNumber += currentChar;
+		if (currentChar > prevChar) {
+			decimalNumber -= prevChar * 2;
 		}
-		prev = current;
+		prevChar = currentChar;
 	}
-	return res;
-}
+	return decimalNumber;
+};
 
-const roman = function (num) {
+const roman = (num) => {
 	if (isNaN(num)) {
 		return romanToDecimal(num);
 	} else {
 		return decimalToRoman(num)
 	}
-}
+};
