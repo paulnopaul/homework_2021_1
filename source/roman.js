@@ -17,10 +17,10 @@ const ROMAN_LETTERS = 'IVXMLCDM'
 const decimalToRoman = (decimalNumber) => {
   let currentDecimalNumber = Number(decimalNumber);
 
-  return Object.entries(ROMAN_TO_DECIMAL).reduce((romanNumber, i) => {
-    while (currentDecimalNumber >= i[1]) {
-      romanNumber += i[0];
-      currentDecimalNumber -= i[1];
+  return Object.entries(ROMAN_TO_DECIMAL).reduce((romanNumber, [roman, decimal]) => {
+    while (currentDecimalNumber >= decimal) {
+      romanNumber += roman;
+      currentDecimalNumber -= decimal;
     }
     return romanNumber;
   }, '');
