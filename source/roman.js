@@ -7,8 +7,6 @@ const ROMAN_TO_DECIMAL = {
   V: 5, IV: 4, I: 1
 };
 
-const ROMAN_LETTERS = 'IVXMLCDM'
-
 /**
  * Переводит число из десятичого формата в римский
  * @param {string} decimalNumber - десятичное число 
@@ -47,12 +45,9 @@ const romanToDecimal = (romanNumber) => {
  * @return {boolean} - true, если число в римском формате валидное
  */
 const validateRoman = (romanNumber) => {
-  for (let char of romanNumber) {
-    if (!(ROMAN_LETTERS.includes(char))) {
-      return false;
-    }
-  }
-  return true;
+  return romanNumber.split('').every((char) => {
+    return Object.keys(ROMAN_TO_DECIMAL).includes(char);
+  });
 }
 
 /**
