@@ -9,14 +9,14 @@ const ROMAN_TO_DECIMAL = {
 
 const ROMAN_LETTERS = 'IVXMLCDM'
 
-
 /**
  * Переводит число из десятичого формата в римский
  * @param {string} decimalNumber - десятичное число 
+ * @return {string} - строка в римском формате
  */
 const decimalToRoman = (decimalNumber) => {
   let romanNumber = '';
-  let currentDecimalNumber = parseInt(decimalNumber);
+  let currentDecimalNumber = Number(decimalNumber);
   for (let i in ROMAN_TO_DECIMAL) {
     while (currentDecimalNumber >= ROMAN_TO_DECIMAL[i]) {
       romanNumber += i;
@@ -29,6 +29,7 @@ const decimalToRoman = (decimalNumber) => {
 /**
  * Переводит число из римского формата в десятичный
  * @param {string} romanNumber - строка с римским числом
+ * @return {int} - число
  */
 const romanToDecimal = (romanNumber) => {
   let currentRomanNumber = romanNumber.toUpperCase();
@@ -48,10 +49,10 @@ const romanToDecimal = (romanNumber) => {
 /**
  * Проверка формата римского числа
  * @param {string} romanNumber - строка с римским числом
+ * @return {boolean} - true, если число в римском формате валидное
  */
 const validateRoman = (romanNumber) => {
   for (let char of romanNumber.toUpperCase()) {
-    // console.log(char);
     if (!(ROMAN_LETTERS.includes(char))) {
       return false;
     }
@@ -63,11 +64,8 @@ const validateRoman = (romanNumber) => {
 /**
  * Перевод числа из римского формата в десятичный и обратно
  * @param {string} num - строка с числом
+ * @return {int | string} - строка с римским числом или целое десятичное число
  */
 const roman = (num) => {
   return (!isNaN(num) ? (decimalToRoman(num)) : (validateRoman(num) ? romanToDecimal(num) : null));
 };
-
-console.log(roman("xvii"));
-console.log(roman("19"));
-console.log(roman("iiff"));
