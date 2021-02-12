@@ -32,13 +32,13 @@ const decimalToRoman = (decimalNumber) => {
  * @return {number} - число
  */
 const romanToDecimal = (romanNumber) => {
-  let decimalNumber = 0;
-  romanNumber.toUpperCase().split("").reduce((prevChar, current) => {
-    const currentChar = ROMAN_TO_DECIMAL[current];
-    decimalNumber += currentChar - (currentChar > prevChar ? prevChar * 2 : 0);
-    return currentChar;
-  }, Math.max(...Object.values(ROMAN_TO_DECIMAL)));
-  return decimalNumber;
+  let prevNumber = Math.max(...Object.values(ROMAN_TO_DECIMAL)); 
+  return romanNumber.split('').reduce((decimalNumber, current) => {
+    const currentNumber = ROMAN_TO_DECIMAL[current];
+    const diff = currentNumber > prevNumber ? prevNumber * 2 : 0;
+    prevNumber = currentNumber;
+    return decimalNumber + currentNumber - diff;
+  }, 0);
 };
 
 /**
@@ -47,7 +47,7 @@ const romanToDecimal = (romanNumber) => {
  * @return {boolean} - true, если число в римском формате валидное
  */
 const validateRoman = (romanNumber) => {
-  for (let char of romanNumber.toUpperCase()) {
+  for (let char of romanNumber) {
     if (!(ROMAN_LETTERS.includes(char))) {
       return false;
     }
@@ -60,6 +60,9 @@ const validateRoman = (romanNumber) => {
  * @param {string} num - строка с числом
  * @return {number | string} - строка с римским числом или целое десятичное число
  */
-const roman = (num) => {
+const roman = (number) => {
+  let num = isNaN(number) ? number.toUpperCase() : number;
   return (!isNaN(num) ? (decimalToRoman(num)) : (validateRoman(num) ? romanToDecimal(num) : null));
 };
+
+
