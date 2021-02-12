@@ -15,15 +15,15 @@ const ROMAN_LETTERS = 'IVXMLCDM'
  * @return {string} - строка в римском формате
  */
 const decimalToRoman = (decimalNumber) => {
-  let romanNumber = '';
   let currentDecimalNumber = Number(decimalNumber);
-  for (let i in ROMAN_TO_DECIMAL) {
-    while (currentDecimalNumber >= ROMAN_TO_DECIMAL[i]) {
-      romanNumber += i;
-      currentDecimalNumber -= ROMAN_TO_DECIMAL[i];
+
+  return Object.entries(ROMAN_TO_DECIMAL).reduce((romanNumber, i) => {
+    while (currentDecimalNumber >= i[1]) {
+      romanNumber += i[0];
+      currentDecimalNumber -= i[1];
     }
-  }
-  return romanNumber;
+    return romanNumber;
+  }, '');
 };
 
 /**
