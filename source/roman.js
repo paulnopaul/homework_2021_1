@@ -32,17 +32,12 @@ const decimalToRoman = (decimalNumber) => {
  * @return {int} - число
  */
 const romanToDecimal = (romanNumber) => {
-  let currentRomanNumber = romanNumber.toUpperCase();
   let decimalNumber = 0;
-  let prevChar = Math.max(...Object.values(ROMAN_TO_DECIMAL));
-  for (let i = 0; i < currentRomanNumber.length; ++i) {
-    const currentChar = ROMAN_TO_DECIMAL[currentRomanNumber[i]];
-    decimalNumber += currentChar;
-    if (currentChar > prevChar) {
-      decimalNumber -= prevChar * 2;
-    }
-    prevChar = currentChar;
-  }
+  romanNumber.toUpperCase().split("").reduce((prevChar, current) => {
+    const currentChar = ROMAN_TO_DECIMAL[current];
+    decimalNumber += currentChar - (currentChar > prevChar ? prevChar * 2 : 0);
+    return currentChar;
+  }, Math.max(...Object.values(ROMAN_TO_DECIMAL)));
   return decimalNumber;
 };
 
