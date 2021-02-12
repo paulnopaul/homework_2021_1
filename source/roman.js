@@ -29,7 +29,7 @@ const decimalToRoman = (decimalNumber) => {
 /**
  * Переводит число из римского формата в десятичный
  * @param {string} romanNumber - строка с римским числом
- * @return {int} - число
+ * @return {number} - число
  */
 const romanToDecimal = (romanNumber) => {
   let decimalNumber = 0;
@@ -58,7 +58,7 @@ const validateRoman = (romanNumber) => {
 /**
  * Перевод числа из римского формата в десятичный и обратно
  * @param {string} num - строка с числом
- * @return {int | string} - строка с римским числом или целое десятичное число
+ * @return {number | string} - строка с римским числом или целое десятичное число
  */
 const roman = (num) => {
   return (!isNaN(num) ? (decimalToRoman(num)) : (validateRoman(num) ? romanToDecimal(num) : null));
