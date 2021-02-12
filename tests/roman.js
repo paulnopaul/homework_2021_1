@@ -42,4 +42,15 @@ QUnit.module('Тестируем функцию roman', function () {
     assert.strictEqual(roman('kkk'), null);
     assert.strictEqual(roman('1ii'), null);
   });
+
+  QUnit.test('roman правильно работает на больших значениях', function (assert) {
+    let i = 2000;
+    assert.strictEqual(roman(roman(i.toString())), i);
+
+    i = 2999;
+    assert.strictEqual(roman(roman(i.toString())), i);
+
+    i = 2979;
+    assert.strictEqual(roman(roman(i.toString())), i);
+  });
 });

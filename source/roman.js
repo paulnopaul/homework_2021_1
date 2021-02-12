@@ -55,7 +55,6 @@ const validateRoman = (romanNumber) => {
   return true;
 }
 
-
 /**
  * Перевод числа из римского формата в десятичный и обратно
  * @param {string} num - строка с числом
