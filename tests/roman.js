@@ -38,19 +38,19 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman('2017'), 'MMXVII');
 	});
 
-	QUnit.test('roman недопускает ошибочные строки', function (assert) {
-		assert.strictEqual(roman('kkk'), null);
-		assert.strictEqual(roman('1ii'), null);
+	QUnit.test('roman выбрасывает TypeError на невалидных римских числах', function (assert) {
+		assert.throws(roman('kkk'), TypeError("Invalid roman number format!"));
+		assert.throws(roman('1ii'), TypeError("Invalid roman number format!"));
 	});
 
 	QUnit.test('roman правильно работает на больших значениях', function (assert) {
-		let i = 2000;
-		assert.strictEqual(roman(roman(i.toString())), i);
+		assert.strictEqual(roman(3123), "MMMCXXIII");
+		assert.strictEqual(roman("MMMCXXIII"), 3123);
 
-		i = 2999;
-		assert.strictEqual(roman(roman(i.toString())), i);
+		assert.strictEqual(roman(3500), "MMMD");
+		assert.strictEqual(roman("MMMD"), 3500);
 
-		i = 2979;
-		assert.strictEqual(roman(roman(i.toString())), i);
+		assert.strictEqual(roman(3724), "MMMDCCXXIV");
+		assert.strictEqual(roman("MMMDCCXXIV"), 3724);
 	});
 });
