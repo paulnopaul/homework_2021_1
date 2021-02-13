@@ -44,11 +44,9 @@ const romanToDecimal = (romanNumber) => {
  * @param {string} romanNumber - строка с римским числом
  * @return {boolean} - true, если число в римском формате валидное
  */
-const validateRoman = (romanNumber) => {
-  return romanNumber.split('').every((char) => {
-    return Object.keys(ROMAN_TO_DECIMAL).includes(char);
-  });
-}
+const isRomanValid = (romanNumber) => romanNumber.split('').every((char) =>
+    Object.keys(ROMAN_TO_DECIMAL).includes(char));
+  
 
 /**
  * Перевод числа из римского формата в десятичный и обратно
@@ -56,8 +54,11 @@ const validateRoman = (romanNumber) => {
  * @return {number | string} - строка с римским числом или целое десятичное число
  */
 const roman = (number) => {
-  let num = isNaN(number) ? number.toUpperCase() : number;
-  return (!isNaN(num) ? (decimalToRoman(num)) : (validateRoman(num) ? romanToDecimal(num) : null));
-};
-
-
+  if (Number(number)) {
+    return decimalToRoman(number);
+  } else if (!isRomanValid(number.toUpperCase())) {
+    throw TypeError;
+  } else {
+    return romanToDecimal(number.toUpperCase());
+  }
+}; 
