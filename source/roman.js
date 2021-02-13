@@ -46,7 +46,6 @@ const romanToDecimal = (romanNumber) => {
  */
 const isRomanValid = (romanNumber) => romanNumber.split('').every((char) =>
     Object.keys(ROMAN_TO_DECIMAL).includes(char));
-  
 
 /**
  * Перевод числа из римского формата в десятичный и обратно
