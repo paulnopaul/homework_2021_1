@@ -39,8 +39,10 @@ QUnit.module('Тестируем функцию roman', function () {
 	});
 
 	QUnit.test('roman выбрасывает TypeError на невалидных римских числах', function (assert) {
-		assert.throws(roman('wrong_roman_number'), TypeError("Invalid roman number format!"));
-		assert.throws(roman('1i'), TypeError("Invalid roman number format!"));
+		assert.throws(() => roman('wrong_roman_number'),
+			new TypeError("Invalid roman number format!"));
+		assert.throws(() => roman('1i'),
+			new TypeError("Invalid roman number format!"));
 	});
 
 	QUnit.test('roman правильно работает на больших значениях', function (assert) {
@@ -54,4 +56,3 @@ QUnit.module('Тестируем функцию roman', function () {
 		assert.strictEqual(roman("MMMDCCXXIV"), 3724);
 	});
 });
-

@@ -51,12 +51,13 @@ const isRomanValid = (romanNumber) => romanNumber.split('').every((char) =>
  * Перевод числа из римского формата в десятичный и обратно
  * @param {string} num - строка с числом
  * @return {number | string} - строка с римским числом или целое десятичное число
+ * @throws {TypeError} - если строка имеет неправильный формат
  */
 const roman = (number) => {
   if (Number(number)) {
     return decimalToRoman(number);
-  } else if (!isRomanValid(number.toUpperCase())) {
-    throw new TypeError("Invalid roman number format!");
+  } else if (isRomanValid(number.toUpperCase())) {
+    return romanToDecimal(number.toUpperCase());
   }
-  return romanToDecimal(number.toUpperCase());
-}; 
+  throw new TypeError("Invalid roman number format!");
+};
