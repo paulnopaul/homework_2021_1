@@ -56,7 +56,8 @@ const isRomanValid = (romanNumber) => romanNumber.split('').every((char) =>
 const roman = (number) => {
   if (Number(number)) {
     return decimalToRoman(number);
-  } else if (isRomanValid(number.toUpperCase())) {
+  } 
+  if (isRomanValid(number.toUpperCase())) {
     return romanToDecimal(number.toUpperCase());
   }
   throw new TypeError("Invalid roman number format!");
