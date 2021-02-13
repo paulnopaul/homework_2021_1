@@ -57,9 +57,11 @@ const roman = (number) => {
   if (Number(number)) {
     return decimalToRoman(number);
   } 
+
   const upperCaseNumber = number.toUpperCase();
   if (!isRomanValid(upperCaseNumber)) {
     throw new TypeError('Invalid roman number format!');
   }
+
   return romanToDecimal(upperCaseNumber);
 };
